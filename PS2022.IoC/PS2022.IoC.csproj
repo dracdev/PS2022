@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PS2022.DAL\PS2022.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
