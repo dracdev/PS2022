@@ -17,7 +17,9 @@ namespace PS2022.DAL.Models
         {
         }
 
+        public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -33,6 +35,31 @@ namespace PS2022.DAL.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Appointment>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Appointment");
+
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.StartTime).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Doctor)
+                    .WithMany()
+                    .HasForeignKey(d => d.DoctorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Appointment_Doctor");
+
+                entity.HasOne(d => d.Patient)
+                    .WithMany()
+                    .HasForeignKey(d => d.PatientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Appointment_Patient");
+            });
 
             modelBuilder.Entity<Doctor>(entity =>
             {
@@ -51,6 +78,21 @@ namespace PS2022.DAL.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Doctor_User");
+            });
+
+            modelBuilder.Entity<Feedback>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Feedback");
+
+                entity.Property(e => e.Comment).HasMaxLength(100);
+
+                entity.HasOne(d => d.Patient)
+                    .WithMany()
+                    .HasForeignKey(d => d.PatientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Feedback_Patient");
             });
 
             modelBuilder.Entity<Patient>(entity =>

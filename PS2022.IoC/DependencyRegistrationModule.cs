@@ -14,14 +14,14 @@ namespace PS2022.IoC
     {
         public void RegisterDependencies(IServiceCollection services) 
         {
-
-            //Add users here??
+            services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
             services.AddScoped<IGenericRepository<Patient>, GenericRepository<Patient>>();
             services.AddScoped<IGenericRepository<Doctor>, GenericRepository<Doctor>>();
+            services.AddScoped<IGenericRepository<Appointment>, GenericRepository<Appointment>>();
+            services.AddScoped<IGenericRepository<Feedback>, GenericRepository<Feedback>>();
 
 
             services.AddScoped<IPatientService, PatientService>();
-            //Services ??
         }
     }
 }

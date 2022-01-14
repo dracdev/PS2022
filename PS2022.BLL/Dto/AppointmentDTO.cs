@@ -5,16 +5,18 @@ using System.Text;
 
 namespace PS2022.BLL.Dto
 {
-    public class PatientDTO
+    public class AppointmentDTO
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public int PatientId { get; set; }
+        public int DoctorId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public DateTime StartTime { get; set; }
+        public int DurationMin { get; set; }
 
-        public virtual UserDTO User { get; set; }
+        public virtual DoctorDTO Doctor { get; set; }
+        public virtual PatientDTO Patient { get; set; }
 
         public void ValidateForCreation()
         {
@@ -24,8 +26,5 @@ namespace PS2022.BLL.Dto
         {
 
         }
-
-        #region Methods
-        #endregion
     }
 }

@@ -23,7 +23,11 @@ namespace PS2022.BLL.Services
         {
             dto.ValidateForCreation();
 
+            dto.CreatedAt = DateTime.UtcNow;
+            dto.UpdatedAt = DateTime.UtcNow;
+
             var entity = _repository.Create(dto.ToEntity());
+
 
             var result = entity.ToDTO();
 
@@ -43,6 +47,7 @@ namespace PS2022.BLL.Services
         public PatientDTO Update(PatientDTO dto)
         {
             dto.ValidateForUpdate();
+            dto.UpdatedAt = DateTime.UtcNow;
 
             var result = _repository.Update(dto.ToEntity()).ToDTO();
 

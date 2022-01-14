@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PS2022.BLL\PS2022.BLL.csproj" />
+    <ProjectReference Include="..\PS2022.IoC\PS2022.IoC.csproj" />
   </ItemGroup>
 
 </Project>

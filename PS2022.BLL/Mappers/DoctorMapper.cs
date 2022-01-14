@@ -7,31 +7,34 @@ using System.Text;
 
 namespace PS2022.BLL.Mappers
 {
-    internal static class PatientMapper
+    internal static class DoctorMapper
     {
-        internal static PatientDTO ToDTO(this Patient entity) 
+
+        internal static DoctorDTO ToDTO(this Doctor entity) 
         {
-            PatientDTO dto = new PatientDTO();
+            DoctorDTO dto = new DoctorDTO();
 
             dto.Id = entity.Id;
-            dto.Name = entity.Name;
-            dto.DateOfBirth = entity.DateOfBirth;
             dto.UserId = entity.UserId;
+            dto.Name = entity.Name;
+            dto.IsSpecialist = entity.IsSpecialist;
             dto.User = entity.User.ToDTO();
             dto.CreatedAt = entity.CreatedAt;
             dto.UpdatedAt = entity.UpdatedAt;
 
+
             return dto;
         }
 
-        internal static Patient ToEntity(this PatientDTO dto)
+
+        internal static Doctor ToEntity(this DoctorDTO dto) 
         {
-            Patient entity = new Patient();
+            Doctor entity = new Doctor();
 
             entity.Id = dto.Id;
-            entity.Name = dto.Name;
-            entity.DateOfBirth = dto.DateOfBirth;
             entity.UserId = dto.UserId;
+            entity.Name = dto.Name;
+            entity.IsSpecialist = dto.IsSpecialist;
             entity.User = dto.User.ToEntity();
             entity.CreatedAt = dto.CreatedAt;
             entity.UpdatedAt = dto.UpdatedAt;
@@ -39,7 +42,8 @@ namespace PS2022.BLL.Mappers
             return entity;
         }
 
-        internal static IEnumerable<PatientDTO> ToDTOs(this IEnumerable<Patient> entities) => entities.Select(e => e.ToDTO());
-        internal static IEnumerable<Patient> ToEntities(this IEnumerable<PatientDTO> dtos) => dtos.Select(e => e.ToEntity());
+        internal static IEnumerable<DoctorDTO> ToDTOs(this IEnumerable<Doctor> entities) => entities.Select(e => e.ToDTO());
+        internal static IEnumerable<Doctor> ToEntities(this IEnumerable<DoctorDTO> dtos) => dtos.Select(e => e.ToEntity());
+
     }
 }
