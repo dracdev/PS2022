@@ -2,6 +2,7 @@
 using PS2022.DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PS2022.BLL.Mappers
@@ -10,36 +11,41 @@ namespace PS2022.BLL.Mappers
     {
         internal static AppointmentDTO ToDTO(this Appointment entity) 
         {
-            AppointmentDTO dto = new AppointmentDTO();
-
-            dto.Id = entity.Id;
-            dto.PatientId = entity.PatientId;
-            dto.DoctorId = entity.DoctorId;
-            dto.Doctor = entity.Doctor.ToDTO();
-            dto.Patient = entity.Patient.ToDTO();
-            dto.StartTime = entity.StartTime;
-            dto.DurationMin = entity.DurationMin;
-            dto.UpdatedAt = entity.UpdatedAt;
-            dto.CreatedAt = entity.CreatedAt;
+            AppointmentDTO dto = new AppointmentDTO
+            {
+                Id = entity.Id,
+                PatientId = entity.PatientId,
+                DoctorId = entity.DoctorId,
+                Doctor = entity.Doctor.ToDTO(),
+                Patient = entity.Patient.ToDTO(),
+                StartTime = entity.StartTime,
+                DurationMin = entity.DurationMin,
+                UpdatedAt = entity.UpdatedAt,
+                CreatedAt = entity.CreatedAt
+            };
 
             return dto;
         }
         internal static Appointment ToEntity(this AppointmentDTO dto) 
         {
-            Appointment entity = new Appointment();
-
-            entity.Id = dto.Id;
-            entity.PatientId = dto.PatientId;
-            entity.DoctorId = dto.DoctorId;
-            entity.Doctor = dto.Doctor.ToEntity();
-            entity.Patient = dto.Patient.ToEntity();
-            entity.StartTime = dto.StartTime;
-            entity.DurationMin = dto.DurationMin;
-            entity.UpdatedAt = dto.UpdatedAt;
-            entity.CreatedAt = dto.CreatedAt;
+            Appointment entity = new Appointment
+            {
+                Id = dto.Id,
+                PatientId = dto.PatientId,
+                DoctorId = dto.DoctorId,
+                Doctor = dto.Doctor.ToEntity(),
+                Patient = dto.Patient.ToEntity(),
+                StartTime = dto.StartTime,
+                DurationMin = dto.DurationMin,
+                UpdatedAt = dto.UpdatedAt,
+                CreatedAt = dto.CreatedAt
+            };
 
             return entity;
-
         }
+
+        internal static IEnumerable<AppointmentDTO> ToDTOs(this IEnumerable<Appointment> entities) => entities.Select(e => e.ToDTO());
+        internal static IEnumerable<Appointment> ToEntities(this IEnumerable<AppointmentDTO> dtos) => dtos.Select(e => e.ToEntity());
+
     }
 }

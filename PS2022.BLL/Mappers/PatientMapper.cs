@@ -11,30 +11,32 @@ namespace PS2022.BLL.Mappers
     {
         internal static PatientDTO ToDTO(this Patient entity) 
         {
-            PatientDTO dto = new PatientDTO();
-
-            dto.Id = entity.Id;
-            dto.Name = entity.Name;
-            dto.DateOfBirth = entity.DateOfBirth;
-            dto.UserId = entity.UserId;
-            dto.User = entity.User.ToDTO();
-            dto.CreatedAt = entity.CreatedAt;
-            dto.UpdatedAt = entity.UpdatedAt;
+            PatientDTO dto = new PatientDTO
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                DateOfBirth = entity.DateOfBirth,
+                UserId = entity.UserId,
+                User = entity.User.ToDTO(),
+                CreatedAt = entity.CreatedAt,
+                UpdatedAt = entity.UpdatedAt
+            };
 
             return dto;
         }
 
         internal static Patient ToEntity(this PatientDTO dto)
         {
-            Patient entity = new Patient();
-
-            entity.Id = dto.Id;
-            entity.Name = dto.Name;
-            entity.DateOfBirth = dto.DateOfBirth;
-            entity.UserId = dto.UserId;
-            entity.User = dto.User.ToEntity();
-            entity.CreatedAt = dto.CreatedAt;
-            entity.UpdatedAt = dto.UpdatedAt;
+            Patient entity = new Patient
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                DateOfBirth = dto.DateOfBirth,
+                UserId = dto.UserId,
+                User = dto.User.ToEntity(),
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = dto.UpdatedAt
+            };
 
             return entity;
         }

@@ -12,15 +12,16 @@ namespace PS2022.BLL.Mappers
 
         internal static DoctorDTO ToDTO(this Doctor entity) 
         {
-            DoctorDTO dto = new DoctorDTO();
-
-            dto.Id = entity.Id;
-            dto.UserId = entity.UserId;
-            dto.Name = entity.Name;
-            dto.IsSpecialist = entity.IsSpecialist;
-            dto.User = entity.User.ToDTO();
-            dto.CreatedAt = entity.CreatedAt;
-            dto.UpdatedAt = entity.UpdatedAt;
+            DoctorDTO dto = new DoctorDTO
+            {
+                Id = entity.Id,
+                UserId = entity.UserId,
+                Name = entity.Name,
+                IsSpecialist = entity.IsSpecialist,
+                User = entity.User.ToDTO(),
+                CreatedAt = entity.CreatedAt,
+                UpdatedAt = entity.UpdatedAt
+            };
 
             return dto;
         }
@@ -28,15 +29,16 @@ namespace PS2022.BLL.Mappers
 
         internal static Doctor ToEntity(this DoctorDTO dto) 
         {
-            Doctor entity = new Doctor();
-
-            entity.Id = dto.Id;
-            entity.UserId = dto.UserId;
-            entity.Name = dto.Name;
-            entity.IsSpecialist = dto.IsSpecialist;
-            entity.User = dto.User.ToEntity();
-            entity.CreatedAt = dto.CreatedAt;
-            entity.UpdatedAt = dto.UpdatedAt;
+            Doctor entity = new Doctor
+            {
+                Id = dto.Id,
+                UserId = dto.UserId,
+                Name = dto.Name,
+                IsSpecialist = dto.IsSpecialist,
+                User = dto.User.ToEntity(),
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = dto.UpdatedAt
+            };
 
             return entity;
         }
