@@ -1,4 +1,5 @@
 ﻿using PS2022.BLL.Dto;
+using PS2022.DAL.Enums;
 using PS2022.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,8 @@ namespace PS2022.BLL.Mappers
             dto.Id = entity.Id;
             dto.Username = entity.Username;
             dto.Password = entity.Password;
-            dto.Role = entity.Role; //ENUM CONVERSION
+            dto.Role = (int)(Role)entity.Role; //ENUM CONVERSION??
 
-            //   dto.patients = entity.patients.todto.tolist
-            dto.Doctors = (List<DoctorDTO>)entity.Doctors;
             dto.Doctors = (List<DoctorDTO>)entity.Doctors.ToDTOs();
             dto.Patients = (List<PatientDTO>)entity.Patients.ToDTOs();
             dto.CreatedAt = entity.CreatedAt;
@@ -38,7 +37,7 @@ namespace PS2022.BLL.Mappers
             entity.Id = dto.Id;
             entity.Username = dto.Username;
             entity.Password = dto.Password;
-            entity.Role = dto.Role;
+            entity.Role = (int)(Role)dto.Role;//???
             entity.Doctors = (ICollection<Doctor>)dto.Doctors.ToEntities();
             entity.Patients = (ICollection<Patient>)dto.Patients.ToEntities();
             entity.CreatedAt = dto.CreatedAt;

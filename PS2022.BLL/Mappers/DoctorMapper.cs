@@ -21,7 +21,6 @@ namespace PS2022.BLL.Mappers
             dto.User = entity.User.ToDTO();
             dto.CreatedAt = entity.CreatedAt;
             dto.UpdatedAt = entity.UpdatedAt;
-            //ASJHSJAHS
 
             return dto;
         }
@@ -44,6 +43,5 @@ namespace PS2022.BLL.Mappers
 
         internal static IEnumerable<DoctorDTO> ToDTOs(this IEnumerable<Doctor> entities) => entities.Select(e => e.ToDTO());
         internal static IEnumerable<Doctor> ToEntities(this IEnumerable<DoctorDTO> dtos) => dtos.Select(e => e.ToEntity());
-
     }
 }
